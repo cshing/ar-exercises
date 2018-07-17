@@ -14,5 +14,9 @@ puts "----------"
 puts Store.count
 
 @mens_stores = Store.where(mens_apparel: true).find_each do |store|
-    puts "#{store.name}: $#{store.annual_revenue}"
+    puts "Mens:  #{store.name} - $#{store.annual_revenue}"
+end
+
+@womens_stores = Store.where(["womens_apparel = ? AND annual_revenue < ?", true, 1000000]).find_each do |store|
+    puts "Womens: #{store.name} - $#{store.annual_revenue}"
 end
